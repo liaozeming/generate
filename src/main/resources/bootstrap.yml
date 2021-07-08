@@ -1,0 +1,36 @@
+server:
+  port: 8080
+spring:
+  application:
+    name: generate
+  cloud:
+    nacos:
+      discovery:
+        #        server-addr: nd-cloud-nacos:8848
+        server-addr: 127.0.0.1:8848
+      config:
+        file-extension: yml
+        server-addr: ${spring.cloud.nacos.discovery.server-addr}
+        shared-dataids: application-nd-cloud.yml
+  main:
+    allow-bean-definition-overriding: true
+  #开发用
+  datasource:
+    dynamic:
+      datasource:
+        master:
+          url: jdbc:mysql://127.0.0.1:3306/db01?characterEncoding=UTF-8&useUnicode=true&useSSL=false&tinyInt1isBit=false&allowPublicKeyRetrieval=true&serverTimezone=GMT%2B8
+          username: root
+          password: 123456
+          driver-class-name: com.mysql.jdbc.Driver
+
+mybatis-plus:
+  mapper-locations: classpath*:mapper/*Mapper.xml
+#  type-aliases-package: com.lzm.pojo
+
+#feign:
+#  sentinel:
+#    enabled: true
+#resttemplate:
+#  sentinel:
+#    enabled: true
